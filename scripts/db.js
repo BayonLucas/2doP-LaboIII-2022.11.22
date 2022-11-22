@@ -20,7 +20,6 @@ export const getAjaxDBMascotas = () =>{
     });
 }
 
-
 //POST
 export const crearDBAnuncio = (anuncio) => {
     const xhr = new XMLHttpRequest();
