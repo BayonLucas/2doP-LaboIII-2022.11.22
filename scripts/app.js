@@ -1,7 +1,7 @@
 import Anuncio_Animal from "./Anuncio_Animal.js";
 import {crearTabla} from "./tablaDinamica.js";
 import {validarCampoVacio, validarTexto, validarImportes, validarSelectVacio} from "./validaciones.js";
-import { getAjaxDBMascotas, crearDBAnuncio, updateAnuncio, deleteFechtPersona } from "./db.js";
+import { getAjaxDBMascotas, crearDBAnuncio, updateFetchAnuncio, deleteFechtPersona } from "./db.js";
  
 const listaAnuncios = await getAjaxDBMascotas();
 
@@ -207,7 +207,7 @@ function actualizarTabla(lista) {
 function ModificarAnuncio(id){
     let anuncio = crearAnuncio(id);
     if(validarAnuncio(anuncio)){
-        playSpinner(updateAnuncio, anuncio);
+        playSpinner(updateFetchAnuncio, anuncio);
     }
 }
 function modificarBotones(){

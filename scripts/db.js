@@ -19,28 +19,7 @@ export const getAjaxDBMascotas = () =>{
         xhr.send();
     });
 }
-// export const getFetchAsyncDBMascotas = async () => {
-//     try{
-//         const res = await fetch(URL);
-//         if(!res.ok){
-//             throw new Error(`${res.status} - ${res.statusText}`) ;
-//         }
-//         const data = await res.json();
-//         return data;
-//     }
-//     catch(err) {
-//         console.error(err);
-//     }
-// };
-// export const getAxiosAsyncDBMascotas = async () => {
-//     try{
-//         const {data} = await axios(URL);
-//         console.log(data);
-//     }
-//     catch(err){
-//         console.error(err.message);
-//     }
-// };
+
 
 //POST
 export const crearDBAnuncio = (anuncio) => {
@@ -61,7 +40,7 @@ export const crearDBAnuncio = (anuncio) => {
 };
 
 //PUT
-export const updateAnuncio = (Anuncio) => {
+export const updateFetchAnuncio = (Anuncio) => {
     fetch(URL + "/" + Anuncio.id, {
         method: "PUT",
         headers: {
