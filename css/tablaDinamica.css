@@ -1,0 +1,53 @@
+table{
+    border-collapse: collapse;
+}
+th{
+    text-transform: capitalize;
+    background-color: indianred;
+}
+
+th, td{
+    border: 1px solid black;
+    padding: 3px 5px;
+}
+
+#divFormulario{
+    display: flex;
+    justify-content:center;
+}
+
+tr:hover{
+    background-color: gray;
+}
+#tabla-container{
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    align-content: center;
+}
+
+
+
+
+.rotate{
+    animation: rotation 1s infinite linear;
+  }
+#spinner{
+  width: 50px;
+  align-content: center;
+}
+
+.notVisible{
+  display: none;
+}
+.Visible{
+  visibility:visible;
+}
+@keyframes rotation {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(359deg);
+  }
+}

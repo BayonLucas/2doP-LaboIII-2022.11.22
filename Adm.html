@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="es">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Huellitas (adoptando como un campeón) - Administración</title>
+        <link rel="stylesheet" href="./css/estilos.css">
+        <link rel="stylesheet" href="./css/tablaDinamica.css">
+    
+    </head>
+    <body>
+    
+        <header>
+            <nav id="nav-header">
+                <a href="./index.html" title="Pagina Principal">
+                    <img id="logo" src="./img/logo.png" alt="logo">
+                </a>
+                <ul>
+                    <li ><a class="links" href="#anuncios">Anuncios</a></li>
+                    <li ><a class="links" href="#nosotros">Nosotros</a></li>
+                    <li ><a class="links" href="#blog">Blog</a></li>
+                    <li ><a class="links" href="#contacto">Contacto</a></li>
+                </ul>
+            </nav>
+        </header>
+    
+        <main>
+            <div id="titulo">
+                <h1>Administración</h1>
+                <div id="banner">
+                    <img src="./img/banner.png" alt="banner">
+                </div>
+    
+            </div>
+    
+            <div id="form-container">
+                <fieldset id="fieldset-papi">
+                    <legend>Infomacion Del Anuncio</legend>
+                    <form >
+                        <fieldset id="form-titulo">
+                            <label for="txtTitulo">Titulo</label><br> 
+                            <input class="input-large" type="text" name="Titulo" id="txtTitulo" placeholder="Titulo">
+                            <small></small>
+                        </fieldset>
+             
+                        <fieldset id="form-descripcion">
+                            <label for="txtDescripcion">Descripcion</label> <br>
+                            <input class="input-large" type="text" name="Descripcion" id="txtDescripcion" placeholder="Descripción">
+                            <small></small>
+                        </fieldset>
+               
+                        <fieldset id="fielset-Animal">
+                            <label >Animal:</label><br>
+                            <fieldset id="form-Animal">
+                                <label for="chPerro">Perro:</label>
+                                <input type="radio" name="Animal" id="chPerro" value="Perro" checked>
+                                <label for="chGato">Gato:</label>
+                                <input type="radio" name="Animal" id="chGato"  value="Gato" >
+                            </fieldset>
+                        </fieldset>
+                        
+                        <fieldset id="form-precio">
+                            <label for="txtPrecio">Precio</label> <br>
+                            <input class="input-large" type="text" name="Precio" id="txtPrecio" placeholder="Precio">
+                            <small></small>
+                        </fieldset>
+    
+                        <fieldset id="form-especificaciones">
+                            <img src="./img/animal.png" alt="raza">
+                            <input class="input-medium" type="text" name="Raza" id="txtRaza" placeholder="Raza">
+                            <img src="./img/ciguena.png" alt="fecha de nacimiento">
+                            <input class="input-medium" type="date" name="Fecha" id="dateFecha" placeholder="dd/mm/aaaa">
+                            <img src="./img/jeringuilla.png" alt="vacunas">
+                            <select class="input-medium" name="Vacunas" id="sltVacunas">
+                                <option value="-1"selected >---Elegir---</option>
+                                <option value="1">Si</option>
+                                <option value="0">No</option>
+                            </select>
+                        </fieldset>
+
+                    </form>
+                </fieldset>
+                <br><br><br>
+            </div>
+            <div id="buttons-container">
+                <button id="btnGuardar"><img src="./img/guardar-el-archivo.png" alt="">Guardar</button>
+                <button id="btnModificar" class="invisible">Modificar</button>
+                <button id="btnEliminar" class="invisible">Eliminar</button>
+                <button id="btnCancelar" class="invisible">Cancelar</button>
+                <br><small></small>
+            </div>
+    
+            <br><br>
+            <img src="./img/pawprint.gif" alt="rueda-spinner" id="spinner" class="rotate notVisible"/>
+            <div id="tabla-container">
+            </div>
+            <br><br>
+    
+        </main>
+        
+        <footer>
+            <div id="ancho">
+                <nav>
+                    <ul>
+                        <li ><a href="#nosotros">Nosotros</a></li>
+                        <li ><a href="#anuncios">Anuncios</a></li>
+                        <li ><a href="#blog">Blog</a></li>
+                        <li ><a href="#contacto">Contacto</a></li>
+                    </ul>
+                </nav>
+                <div id="footer-copyR">
+                    <p>Todos los derechos reservados 2019 &copy;</p>
+                </div>
+            </div>
+        </footer>
+    
+        <script src="./scripts/app.js" type="module"></script>
+    
+    </body>
+</html>

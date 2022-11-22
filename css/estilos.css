@@ -1,0 +1,190 @@
+body{
+    margin: 0;
+    border: 0;
+}
+
+/* ------------------------------------------------------------------------------------------ */
+/*Header*/
+header{
+    display: flex;
+    justify-content: center;
+}
+header, footer{
+    background-color: orange;  
+    width: 100%;  
+    height: 80px;
+    margin: 0;
+    
+}
+li{
+    list-style: none;
+}
+.links{
+    color: black;
+    text-decoration: none;
+    font-size: 13px;
+}
+#logo{
+    width: 80px;
+    height: 70px;
+}
+#nav-header{
+    width: 80%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+/* ------------------------------------------------------------------------------------------ */
+
+
+
+
+
+
+#form-especificaciones{
+    align-items: center;
+}
+#form-especificaciones > img{
+    width: 20px;
+    padding: 2px 2px 2px 2px;
+    display: inline;
+}
+
+fieldset{
+    margin: 10px;
+}
+h1{
+    margin: 0%;
+    text-align: center;
+    color: white;
+    background-color: black;
+    padding-bottom: 1px;
+    padding-top: 1px;
+    border: 1px solid white; 
+    border-left: 0ch;
+    border-right: 0ch;
+}
+
+
+
+footer nav{
+    width: 50%;
+    height: 30px;
+}
+footer nav ul li{   
+    display: inline;
+    float: left;
+    margin: 0%;
+}
+footer nav ul li a{   
+    color: white;
+    position: relative;
+    display: block;
+    text-decoration: none;
+    padding: 16px;
+    border: none;   
+    padding-top: 40px;
+    font-size: 13px;
+    text-align: left;
+}
+#footer-copyR{
+    width: 95%;
+    color: white;
+    text-align: right;
+    padding: 5px;
+}
+
+
+@media screen and (max-width : 900px){
+    
+}
+
+
+
+
+/* ------------------------------------------------------------------------------------------ */
+/* Formulario */
+#anuncios{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+#form-container{
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    align-items: center;
+    width: 100%;
+    height: 450px;
+}
+#fieldset-papi{
+    width: 73%;
+    height: 90%;
+    display: flex;
+    flex-direction: column;
+}
+#fieldset-papi fieldset{
+    border-style: none;
+}
+input, select{
+    border-style: none;
+    background-color: lightgrey;
+    padding: 10px;
+    border-radius: 10px;
+}
+.input-large{
+    width: 100%;
+}
+.input-medium{
+    width: 28%;
+}
+#fielset-Animal{
+    margin-top: 0;
+    margin-bottom: 0;
+}
+#form-Animal{
+    display: flex;
+    justify-content: center;
+    margin: 0;
+    padding: 0;
+}
+input[type="radio"]{
+    margin: 0 20px;
+}
+/* ------------------------------------------------------------------------------------------ */
+
+
+
+
+#buttons-container{
+    display: flex;
+    justify-content: center;
+    align-content: center;
+
+}
+
+
+#banner{
+    width: 100%;
+}
+#banner>img{
+    width: 100%;
+    height: 150px;
+}
+
+
+
+
+.inputError{
+    border: 1px solid red; 
+}
+small{
+    color: red;
+    font-size: small;
+}
+#buttons-container>button>img{
+    width: 10px;
+}
+.invisible{
+    display: none;
+}
