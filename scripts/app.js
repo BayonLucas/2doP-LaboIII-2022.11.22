@@ -1,9 +1,10 @@
 import Anuncio_Animal from "./Anuncio_Animal.js";
 import {crearTabla} from "./tablaDinamica.js";
 import {validarCampoVacio, validarTexto, validarImportes, validarSelectVacio} from "./validaciones.js";
+import { getAjaxDBMascotas, getFetchAsyncDBMascotas, getAxiosAsyncDBMascotas, crearDBAnuncio } from "./db.js";
  
-const listaAnuncios = localStorage.getItem("anuncios")? JSON.parse(localStorage.getItem("anuncios")) : []; 
 
+const listaAnuncios = await getAjaxDBMascotas(); 
 const controles = document.forms[0].elements;
 
 const btnGuardar = document.getElementById("btnGuardar");
@@ -19,10 +20,14 @@ const spinner = document.getElementById("spinner");
 let idSelected = 0;
 let estadoBotones = 0;
 
+//Testeo 
+// console.log(getAjaxDBMascotas());
+// console.log(getFetchAsyncDBMascotas());
+// console.log(getAxiosAsyncDBMascotas());
+
 
 
 window.addEventListener("load", () => {
-    localStorage.getItem("anuncios")? JSON.parse(localStorage.getItem("anuncios")) : localStorage.setItem("anuncios", JSON.stringify([]));
     actualizarTabla(listaAnuncios);
 });
 
@@ -31,7 +36,7 @@ for(let i = 0; i < controles.length; i++){
     const control = controles.item(i);
     if((control.matches("input"))){
         control.addEventListener("blur", validarCampoVacio);
-        if(control.matches("[type=text]") && !control.matches("[id=txtPrecio]")){
+        if(control.matches("[type=text]") && !control.matches("[id=txtPrecio]") && !control.matches("[id=txtRaza]")){
             control.addEventListener("blur", validarTexto);
         }
         else if(control.matches("[id=txtPrecio]")){
@@ -142,11 +147,11 @@ function agregarAnuncio(lista, anuncio){
             return;
         }
     }
-    lista.push(anuncio);
-    localStorage.setItem("anuncios", JSON.stringify(lista));
+    // lista.push(anuncio);
+    // localStorage.setItem("anuncios", JSON.stringify(lista));
     limpiarInputs();
     actualizarTabla(lista);
-    //playSpinner(listaAnuncios);
+    playSpinner(listaAnuncios);
 }
 function completarForm(anuncio){
     const {txtTitulo, chPerro, chGato, txtDescripcion, txtPrecio, txtRaza, dateFecha, sltVacunas} = controles;
@@ -169,16 +174,17 @@ function completarForm(anuncio){
             break;
     }
 }
-function actualizarTabla(lista) {
+async function actualizarTabla(lista) {
     lista.sort(function(a, b){
         if (a.id > b.id) {
             return 1;
-          }
-          if (a.id < b.id) {
+            }
+            if (a.id < b.id) {
             return -1;
-          }
-          return 0;
+            }
+            return 0;
     });    
+    
     const container = document.getElementById("tabla-container");
     if(container.children.length > 0 && lista.length > 0){
         const table = crearTabla(lista);
@@ -234,7 +240,8 @@ function playSpinner(lista, anuncio){
         
         aux.classList.remove("invisible");
         
-        agregarAnuncio(lista, anuncio)
+        // agregarAnuncio(lista, anuncio)
+        crearDBAnuncio(anuncio);
     }, 2000);
 }
 function validarAnuncio(a){

@@ -43,7 +43,7 @@ export const validarTexto = (e) => {
     let message = "";
 
     if(text.length !== 0){
-        if(!validarLogitud(input, 5,25)){
+        if(!validarLogitud(input, 4,25)){
             message = message + "El campo debe contener entre 4 y 25 caracteres. ";
             console.log(input + " - Mensaje: " + message);
         }
@@ -64,7 +64,7 @@ export const validarTexto = (e) => {
 export const validarCampoVacio = (e) => {
     const input = e.target;
     const value = input.value.trim();
-    if(input.nextElementSibling.textContent === ""){
+    if(input.nextElementSibling && input.nextElementSibling.textContent === ""){
         if(!value){
             setError(input);
         }else{

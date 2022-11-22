@@ -59,6 +59,16 @@
       "raza": "razita",
       "fechaNacimiento": "2022-11-09",
       "vacunas": "Si"
+    },
+    {
+      "id": 10,
+      "titulo": "testAjax",
+      "descripcion": "Estoy cargando desde ajax",
+      "especie": "Perro",
+      "precio": 44444,
+      "raza": "ajax",
+      "fechaNacimiento": "2022-11-09",
+      "vacunas": "Si"
     }
   ]
 }
