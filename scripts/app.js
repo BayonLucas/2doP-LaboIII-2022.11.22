@@ -1,10 +1,10 @@
 import Anuncio_Animal from "./Anuncio_Animal.js";
 import {crearTabla} from "./tablaDinamica.js";
 import {validarCampoVacio, validarTexto, validarImportes, validarSelectVacio} from "./validaciones.js";
-import { getAjaxDBMascotas, getFetchAsyncDBMascotas, getAxiosAsyncDBMascotas, crearDBAnuncio } from "./db.js";
+import { getAjaxDBMascotas, crearDBAnuncio, updateAnuncio, deleteFechtPersona } from "./db.js";
  
+const listaAnuncios = await getAjaxDBMascotas();
 
-const listaAnuncios = await getAjaxDBMascotas(); 
 const controles = document.forms[0].elements;
 
 const btnGuardar = document.getElementById("btnGuardar");
@@ -13,6 +13,8 @@ const btnEliminar = document.getElementById("btnEliminar");
 const btnCancelar = document.getElementById("btnCancelar");
 
 const tabla = document.getElementById("tabla-container");
+const filtro = document.getElementById("sltFiltro");
+const promedio = document.getElementById("txtPromedio");
 const $smallBtn = btnGuardar.nextSibling;
 
 const spinner = document.getElementById("spinner");
@@ -20,16 +22,9 @@ const spinner = document.getElementById("spinner");
 let idSelected = 0;
 let estadoBotones = 0;
 
-//Testeo 
-// console.log(getAjaxDBMascotas());
-// console.log(getFetchAsyncDBMascotas());
-// console.log(getAxiosAsyncDBMascotas());
 
-
-
-window.addEventListener("load", () => {
-    actualizarTabla(listaAnuncios);
-});
+//actualizarTabla(listaAnuncios);
+playSpinner(await actualizarTabla, null, listaAnuncios);
 
 //Aplico validaciones
 for(let i = 0; i < controles.length; i++){
@@ -63,14 +58,14 @@ tabla.addEventListener("click", (e) => {
     }
 });
 
-//Guardar
+//Guardar ok
 btnGuardar.addEventListener("click", () => {
     let anuncio = crearAnuncio(getNuevoID(listaAnuncios));
     if(!anuncio){   
         $smallBtn.textContent = "Error en la carga del anuncio";
         return;
     }
-    playSpinner(listaAnuncios, anuncio);
+    playSpinner(crearDBAnuncio, anuncio);
     $smallBtn.textContent = "";
     $smallBtn.classList.remove("inputError");
 
@@ -93,12 +88,28 @@ btnCancelar.addEventListener("click", () =>{
 //Eliminar
 btnEliminar.addEventListener("click", () =>{
     eliminarAnuncio(listaAnuncios, idSelected);
-    actualizarTabla(listaAnuncios);
     limpiarInputs();
     modificarBotones();
 });
 
+filtro.addEventListener("change", (e) => {
+    e.preventDefault();
+    let aux = listaAnuncios.filter((anuncio)=>{
+        switch(filtro.value){
+            case "1":
+                return anuncio.especie === "Perro"? true : false;
+            case "2":
+                return anuncio.especie === "Gato"? true : false;
+            default:
+                return listaAnuncios;
+        }
+    });
+    playSpinner(actualizarTabla, null, aux);
+    promedio.value = aux.reduce((a, b)=> {        
+        return a.precio + b.precio;
+    });
 
+});
 
 //#region funciones
 function getEspecie(){
@@ -147,9 +158,8 @@ function agregarAnuncio(lista, anuncio){
             return;
         }
     }
-    // lista.push(anuncio);
-    // localStorage.setItem("anuncios", JSON.stringify(lista));
     limpiarInputs();
+
     actualizarTabla(lista);
     playSpinner(listaAnuncios);
 }
@@ -174,17 +184,16 @@ function completarForm(anuncio){
             break;
     }
 }
-async function actualizarTabla(lista) {
+function actualizarTabla(lista) {
     lista.sort(function(a, b){
         if (a.id > b.id) {
             return 1;
-            }
-            if (a.id < b.id) {
+          }
+          if (a.id < b.id) {
             return -1;
-            }
-            return 0;
+          }
+          return 0;
     });    
-    
     const container = document.getElementById("tabla-container");
     if(container.children.length > 0 && lista.length > 0){
         const table = crearTabla(lista);
@@ -198,9 +207,7 @@ async function actualizarTabla(lista) {
 function ModificarAnuncio(id){
     let anuncio = crearAnuncio(id);
     if(validarAnuncio(anuncio)){
-        eliminarAnuncio(listaAnuncios, id);
-        agregarAnuncio(listaAnuncios, anuncio);
-        actualizarTabla(listaAnuncios);
+        playSpinner(updateAnuncio, anuncio);
     }
 }
 function modificarBotones(){
@@ -222,30 +229,39 @@ function modificarBotones(){
 }
 function eliminarAnuncio(lista, id){
     let index = lista.findIndex((element) => element.id === id)
-    lista.splice(index, 1);
-    localStorage.setItem("anuncios", JSON.stringify(lista));
+    let aux = lista[index];
+    playSpinner(deleteFechtPersona, aux);
 }
-function playSpinner(lista, anuncio){
+function playSpinner(callback, anuncio = null, lista = null ){
     
     const aux = tabla.firstElementChild;
-    
     spinner.classList.add("visible");
     spinner.classList.remove("notVisible");
-
+    if(aux)
     aux.classList.add("invisible");
     
     setTimeout(() => {
+        
+        if(anuncio){
+            callback(anuncio);
+        }
+        else if(lista){
+            callback(lista);
+        }
+        else{
+            callback();
+        }
+        
         spinner.classList.remove("visible");
         spinner.classList.add("notVisible");       
         
+        if(aux)
         aux.classList.remove("invisible");
-        
-        // agregarAnuncio(lista, anuncio)
-        crearDBAnuncio(anuncio);
-    }, 2000);
+    }, 1000);
 }
+
 function validarAnuncio(a){
-    ret = false;
+    let ret = false;
     if(a.titulo !== "Error" && a.descripcion !== "error", a.especie!== "error" && a.precio!== -1 && a.raza !==-1 && a.vacunas!== "error"){
         ret = true;
     }

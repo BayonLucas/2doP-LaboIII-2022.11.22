@@ -94,6 +94,30 @@
     
             <br><br>
             <img src="./img/pawprint.gif" alt="rueda-spinner" id="spinner" class="rotate notVisible"/>
+            
+            <fieldset id="filter">
+                <label > Filtrar Animal</label> <br>
+                <select  class="input-medium" name="Filtro" id="sltFiltro">
+                    <option value="-1"selected disabled>---Elegir---</option>
+                    <option value="0">Todo</option>
+                    <option value="1">Perro</option>
+                    <option value="2">Gato</option>
+                </select>
+                <br>
+                <label > Promedio</label><br>
+                <input type="text" name="Promedio" id="txtPromedio">
+            </fieldset>
+            
+            <fieldset id="filtroColumnas">
+                <label><input type="checkbox" name="" id="chTitulo" checked>Titulo</label>
+                <label><input type="checkbox" name="" id="chDescripcion" checked>Descripcion</label>
+                <label><input type="checkbox" name="" id="chEspecie" checked>Especie</label>
+                <label><input type="checkbox" name="" id="chPrecio" checked>Precio</label>
+                <label><input type="checkbox" name="" id="chRaza" checked>Raza</label>
+                <label><input type="checkbox" name="" id="chFechaNacimiento" checked>Fecha Nacimiento</label>
+                <label><input type="checkbox" name="" id="chVacunas" checked>Vacunas</label>
+            </fieldset>
+            
             <div id="tabla-container">
             </div>
             <br><br>

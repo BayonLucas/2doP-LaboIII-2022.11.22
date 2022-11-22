@@ -25,7 +25,7 @@
       "titulo": "Para Modificar",
       "descripcion": "Me volvieron a modificar",
       "especie": "Perro",
-      "precio": 9999,
+      "precio": 10,
       "raza": "testRaza",
       "fechaNacimiento": "2022-10-26",
       "vacunas": "No"
@@ -39,16 +39,6 @@
       "raza": "relleno5",
       "fechaNacimiento": "2022-10-04",
       "vacunas": "No"
-    },
-    {
-      "id": 7,
-      "titulo": "relleno9",
-      "descripcion": "relleno9",
-      "especie": "Perro",
-      "precio": 900,
-      "raza": "relleno9",
-      "fechaNacimiento": "2022-10-11",
-      "vacunas": "Si"
     },
     {
       "id": 9,

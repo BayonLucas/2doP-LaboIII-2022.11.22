@@ -1,5 +1,8 @@
 //Lista de anuncios
-const listaAnuncios = JSON.parse(localStorage.getItem("anuncios"));
+import { getAjaxDBMascotas} from "./db.js";
+const listaAnuncios = await getAjaxDBMascotas();
+
+
 
 const contenedor = document.getElementById("anuncios-container");
 

@@ -19,31 +19,31 @@ export const getAjaxDBMascotas = () =>{
         xhr.send();
     });
 }
-export const getFetchAsyncDBMascotas = async () => {
-    try{
-        const res = await fetch(URL);
-        if(!res.ok){
-            throw new Error(`${res.status} - ${res.statusText}`) ;
-        }
-        const data = await res.json();
-        return data;
-    }
-    catch(err) {
-        console.error(err);
-    }
-};
-export const getAxiosAsyncDBMascotas = async () => {
-    try{
-        const {data} = await axios(URL);
-        console.log(data);
-    }
-    catch(err){
-        console.error(err.message);
-    }
-};
+// export const getFetchAsyncDBMascotas = async () => {
+//     try{
+//         const res = await fetch(URL);
+//         if(!res.ok){
+//             throw new Error(`${res.status} - ${res.statusText}`) ;
+//         }
+//         const data = await res.json();
+//         return data;
+//     }
+//     catch(err) {
+//         console.error(err);
+//     }
+// };
+// export const getAxiosAsyncDBMascotas = async () => {
+//     try{
+//         const {data} = await axios(URL);
+//         console.log(data);
+//     }
+//     catch(err){
+//         console.error(err.message);
+//     }
+// };
 
 //POST
-export const crearDBAnuncio = (lista, anuncio) => {
+export const crearDBAnuncio = (anuncio) => {
     const xhr = new XMLHttpRequest();
   
     xhr.addEventListener("readystatechange", () => {
@@ -58,9 +58,41 @@ export const crearDBAnuncio = (lista, anuncio) => {
     xhr.open("POST", URL);
     xhr.setRequestHeader("Content-Type", "application/json");
     xhr.send(JSON.stringify(anuncio));
-  };
+};
 
-
-
+//PUT
+export const updateAnuncio = (Anuncio) => {
+    fetch(URL + "/" + Anuncio.id, {
+        method: "PUT",
+        headers: {
+            "Content-Type": "application/json",
+            },
+        body: JSON.stringify(Anuncio)
+    })
+    .then((res) => {
+        return res.ok? res.json() : Promise.reject(`Error: ${res.status} - ${res.statusText}`);
+      })
+    .catch((err) => {
+        console.error(err);
+    });
+};
+//DELETE
+export const deleteFechtPersona = (Anuncio) => {
+    fetch(URL + "/" + Anuncio.id, {
+        method: "DELETE",
+    })
+    .then((res)=> {
+        if(!res.ok)
+            return Promise.reject(`Error: ${res.status} - ${res.statusText}`);
+        
+        return res.json();
+    })
+    .then((data) =>{
+        console.log(data);
+    })
+    .catch((err) => {
+        console.error(err);
+    });
+};
 
 
